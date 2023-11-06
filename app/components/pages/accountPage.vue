@@ -25,7 +25,7 @@
       <Label col="0" text.decode="&#xf234;" class="fas" style="margin-right: 15px"></Label>
       <Label>Aggiungi {{ userdata.name }} come amico</Label>
     </FlexboxLayout>
-    <FlexboxLayout class="actionButton gray" @tap="goToSettings" v-else-if="!loading && !error">
+    <FlexboxLayout class="actionButton gray" @tap="goToSettings" v-else-if="!loading && !error && userdata.id == localUserData.id">
       <Label col="0" text.decode="&#xf013;" class="fas" style="margin-right: 15px"></Label>
       <Label>Impostazioni</Label>
     </FlexboxLayout>
@@ -59,7 +59,7 @@ export default Vue.extend({
   methods: {
     async getUserData() {
       Http.request({
-        url: `https://api.trashtracer.lol/u/${this.userid}`,
+        url: `http://192.168.1.16:8080/u/${this.userid}`,
         method: 'GET',
         headers: {
           auth: AppSettings.getString('token')

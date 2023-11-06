@@ -33,7 +33,7 @@ export default Vue.extend({
     async checkSessionValid() {
       const token = AppSettings.getString('token');
       Http.request({
-        url: 'https://api.trashtracer.lol/u/',
+        url: 'http://192.168.1.16:8080/u/',
         method: 'GET',
         headers: {
           auth: token

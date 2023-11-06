@@ -7,6 +7,35 @@
   font-weight: bold;
 }
 
+/* tot amount */
+.homeTotalAmount {
+  background-color: var(--secondary);
+  padding: 25px;
+  margin: 25px;
+  border-radius: 15px;
+  box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.07);
+  flex-direction: column;
+}
+
+.homeTotalAmountTitle {
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.homeTotalAmountValue {
+  width: 100%;
+  text-align: center;
+  font-size: 45px;
+  font-weight: bold;
+  color: rgb(42, 147, 165);
+}
+
+.homeTotalAmountLabel {
+  text-align: center;
+  font-size: 18px;
+}
 /* chart */
 .homeChart {
   background-color: var(--secondary);

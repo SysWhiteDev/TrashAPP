@@ -37,7 +37,6 @@ export default Vue.extend({
     },
     mounted() {
         this.darkModeToggle = AppSettings.getBoolean("darkMode");
-        
     },
     methods: {
         goBack() {

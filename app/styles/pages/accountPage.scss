@@ -50,10 +50,36 @@
   align-items: center;
   font-size: 18;
   border-width: 5px;
-  border-color: var(--primary);
+  background-color: hsla(110, 100%, 65%, 0.431);
+  border-color: hsla(100, 100%, 66%, 0.431);
 }
 
 .actionButton.gray {
   background-color: #9595956e;
   border-color: #aaaaaa6e;
 }
+
+.actionButton.red {
+  background-color: hsla(0, 100%, 65%, 0.431);
+  border-color: hsla(0, 100%, 66%, 0.431);
+}
+
+.actionButton.blue {
+  background-color: hsla(237, 100%, 65%, 0.431);
+  border-color: hsla(237, 100%, 66%, 0.431);
+}
+
+/* actionBar */
+.actionBar {
+  width: 100%;
+  font-size: 25px;
+  padding: 25px;
+  background: var(--secondary);
+}
+
+.goBackIcon {
+  margin-right: 60px;
+  margin-left: 20px;
+  font-size: 30px;
+}
+

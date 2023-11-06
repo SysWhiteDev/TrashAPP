@@ -17,6 +17,11 @@
     "stream": "^0.0.2",
     "util": "^0.12.5"
   },
+  "scripts": {
+    "doctor": "ns doctor android",
+    "android": "ns run android",
+    "debug": "ns debug android"
+  },
   "devDependencies": {
     "@nativescript/android": "8.5.1",
     "@nativescript/types": "~8.5.0",

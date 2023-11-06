@@ -3,6 +3,9 @@
     <Label class="rankingTitle">Classifiche</Label>
     <Label class="rankingSection">Tipo di classifica</Label>
     <FlexboxLayout class="lbTypes">
+      <FlexboxLayout class="lbType" :class="{ active: lbType === 'friends' }" @tap="changeLbType('friends')">
+        <Label>Amici</Label>
+      </FlexboxLayout>
       <FlexboxLayout class="lbType" :class="{ active: lbType === 'month' }" @tap="changeLbType('month')">
         <Label>Mensile</Label>
       </FlexboxLayout>
@@ -27,7 +30,8 @@
             style="background-color: rgba(165, 42, 42, 0.163); margin-right: 0;"></Label>
         </FlexBoxLayout>
       </FlexBoxLayout>
-      <FlexBoxLayout class="lbPlayer" v-for="(player, index) in lbData" :key="player.id">
+      <FlexBoxLayout class="lbPlayer" v-for="(player, index) in filteredLbData" :key="player.user.id"
+        @tap="openUserPage(player.user.id)">
         <FlexBoxLayout>
           <Label class="lbRank">#{{ index + 1 }}</Label>
           <Label class="lbName">{{ player.user.name }}</Label>
@@ -46,18 +50,23 @@
 import Vue from 'vue';
 import { Http, HttpContent, HttpResponse } from '@nativescript/core';
 import * as AppSettings from "@nativescript/core/application-settings";
+import externalAccountPageVue from './externalAccountPage.vue';
 export default Vue.extend({
   data() {
     return {
       lbType: 'month',
       lbTypeNames: {
+        friends: 'degli amici',
         month: 'mensile',
         allTime: 'di tutti i tempi'
       },
-      lbData: {}
+      lbData: {},
+      filteredLbData: {},
+      localUserData: '',
     };
   },
   mounted() {
+    this.localUserData = JSON.parse(AppSettings.getString('userdata'));
     setInterval(() => {
       this.getLeaderboardData();
     }, 200)
@@ -68,7 +77,7 @@ export default Vue.extend({
     },
     async getLeaderboardData() {
       Http.request({
-        url: "https://api.trashtracer.lol/lb",
+        url: "http://192.168.1.16:8080/lb",
         method: "GET",
         headers: {
           auth: AppSettings.getString("token"),
@@ -76,7 +85,19 @@ export default Vue.extend({
         }
       }).then((res: HttpResponse) => {
         this.lbData = JSON.parse(res.content);
+        if (this.lbType === 'friends') {
+          this.filteredLbData = this.lbData.filter(player => player.friend === "TRUE" || player.user.id === this.localUserData.id);
+        } else {
+          this.filteredLbData = this.lbData;
+        }
       })
+    },
+    openUserPage(id: number) {
+      this.$navigateTo(externalAccountPageVue, {
+        props: {
+          userid: id
+        }
+      });
     }
   }
 });

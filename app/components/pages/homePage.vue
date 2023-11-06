@@ -1,9 +1,13 @@
 <template>
   <StackLayout>
     <Label class="homeTitle">Benvenuto, {{ userdata.name }}</Label>
+    <StackLayout class="homeTotalAmount">
+      <Label class="homeTotalAmountTitle">Questa settimana hai riciclato</Label>
+      <Label class="homeTotalAmountValue">{{ calculatedTotalAmount }} g</Label>
+      <Label class="homeTotalAmountLabel">di rifiuti totali</Label>
+    </StackLayout>
     <StackLayout class="homeChart">
-      <Label class="chartTitle">Questa settimana hai riciclato</Label>
-      <Label class="chartTitle">{{ calculatedTotalAmount }}g di rifiuti</Label>
+      <Label class="chartTitle">Grafico di questa settimana</Label>
       <RadCartesianChart>
         <CategoricalAxis v-tkCartesianHorizontalAxis />
         <LinearAxis v-tkCartesianVerticalAxis label="test" />
@@ -43,7 +47,7 @@ export default Vue.extend({
     },
     async getGraphData() {
       Http.request({
-        "url": "https://api.trashtracer.lol/g",
+        "url": "http://192.168.1.16:8080/g",
         method: "GET",
         headers: {
           auth: AppSettings.getString("token")

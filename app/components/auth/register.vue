@@ -11,7 +11,7 @@
         <FlexBoxLayout class="buttons">
           <Button text="Registrati" class="button" @tap="tryRegister"></Button>
           <Label style="font-size: 15">o</Label>
-          <Button text="Log in" class="button accent" @tap="goToLogin"></Button>
+          <Button text="Log in" class="minimalButton" @tap="goToLogin"></Button>
         </FlexBoxLayout>
       </StackLayout>
     </FlexboxLayout>
@@ -44,7 +44,7 @@ export default Vue.extend({
     async tryRegister() {
       try {
         const response = await Http.request({
-          url: 'https://api.trashtracer.lol/auth/r',
+          url: 'http://192.168.1.16:8080/auth/r',
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           content: JSON.stringify({

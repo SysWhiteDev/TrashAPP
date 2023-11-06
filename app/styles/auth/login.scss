@@ -41,7 +41,7 @@ TextField {
 
 /* buttons */
 .buttons {
-  justify-content: space-between;
+  flex-direction: column;
   width: 100%;
   margin-top: 20px;
 }
@@ -53,11 +53,9 @@ TextField {
 .button {
   color: var(--text);
   background-color: var(--background);
-  padding: 30px;
   border-radius: 15px;
   font-size: 20;
   margin: 0;
-  width: 45%;
 }
 
 .button:active {
@@ -65,4 +63,17 @@ TextField {
   background-color: var(--secondary);
 }
 
+.minimalButton {
+  color: var(--text);
+  background-color: none;
+  font-size: 20;
+  margin: 0;
+  padding: 0;
+  text-decoration: underline;
+  box-shadow: none;
+  height: 30;
+}
 
+.minimalButton:active {
+  color: var(--text);
+}

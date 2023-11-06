@@ -156,7 +156,7 @@ export default Vue.extend({
 
       this.loading = true;
       Http.request({
-        url: "https://api.trashtracer.lol/r",
+        url: "http://192.168.1.16:8080/r",
         method: "POST",
         headers: {
           "Content-Type": "application/json",
