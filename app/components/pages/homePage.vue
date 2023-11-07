@@ -1,19 +1,29 @@
 <template>
   <StackLayout>
     <Label class="homeTitle">Benvenuto, {{ userdata.name }}</Label>
-    <StackLayout class="homeTotalAmount">
-      <Label class="homeTotalAmountTitle">Questa settimana hai riciclato</Label>
-      <Label class="homeTotalAmountValue">{{ calculatedTotalAmount }} g</Label>
-      <Label class="homeTotalAmountLabel">di rifiuti totali</Label>
-    </StackLayout>
-    <StackLayout class="homeChart">
-      <Label class="chartTitle">Grafico di questa settimana</Label>
-      <RadCartesianChart>
-        <CategoricalAxis v-tkCartesianHorizontalAxis />
-        <LinearAxis v-tkCartesianVerticalAxis label="test" />
-        <LineSeries v-tkCartesianSeries :items="chartDataMASS" categoryProperty="Day" valueProperty="Amount" />
-      </RadCartesianChart>
-    </StackLayout>
+    <ScrollView class="scrollView">
+      <StackLayout>
+        <StackLayout class="homeTotalAmount">
+          <Label class="homeTotalAmountTitle">Questa settimana hai riciclato</Label>
+          <Label class="homeTotalAmountValue">{{ (calculatedTotalAmount).toFixed(2) }} g</Label>
+          <Label class="homeTotalAmountLabel">di rifiuti totali</Label>
+        </StackLayout>
+        <StackLayout class="homeTotalAmount">
+          <Label class="homeTotalAmountTitle">Questa settimana hai</Label>
+          <Label class="homeTotalAmountTitle" style="margin-top: 0;">evitato di emettere</Label>
+          <Label class="homeTotalAmountValue">{{ (calculatedC02TotalAmount).toFixed(2) }} g</Label>
+          <Label class="homeTotalAmountLabel">di C02 nell'ambiente</Label>
+        </StackLayout>
+        <StackLayout class="homeChart">
+          <Label class="chartTitle">Grafico di questa settimana</Label>
+          <RadCartesianChart>
+            <CategoricalAxis v-tkCartesianHorizontalAxis />
+            <LinearAxis v-tkCartesianVerticalAxis label="test" />
+            <LineSeries v-tkCartesianSeries :items="chartDataMASS" categoryProperty="Day" valueProperty="Amount" />
+          </RadCartesianChart>
+        </StackLayout>
+      </StackLayout>
+    </ScrollView>
   </StackLayout>
 </template>
 
@@ -28,7 +38,8 @@ export default Vue.extend({
     return {
       userdata: '',
       chartDataMASS: [],
-      calculatedTotalAmount: 0
+      calculatedTotalAmount: 0,
+      calculatedC02TotalAmount: 0,
     };
   },
   mounted() {
@@ -58,6 +69,7 @@ export default Vue.extend({
         this.calculatedTotalAmount = 0;
         for (const entry of this.chartDataMASS) {
           this.calculatedTotalAmount += entry.Amount;
+          this.calculatedC02TotalAmount = this.calculatedTotalAmount * 0.0047;
         }
       })
     }
@@ -67,4 +79,10 @@ export default Vue.extend({
 
 <style scoped>
 @import url('../../styles/pages/homePage.scss');
+
+/* scrollView */
+.scrollView {
+  height: 100%;
+  width: 100%;
+}
 </style>

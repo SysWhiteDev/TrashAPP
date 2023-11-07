@@ -1,5 +1,5 @@
 <template>
-  <page actionBarHidden="true" :class="{ 'dark': darkModeToggle }">
+  <page actionBarHidden="true" :class="{ 'dark': darkModeToggle }" class="page">
     <StackLayout>
       <FlexboxLayout class="actionBar">
         <FlexboxLayout @tap="goBack()" class="goBackIcon">
