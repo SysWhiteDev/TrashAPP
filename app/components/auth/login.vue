@@ -54,7 +54,7 @@ export default Vue.extend({
     async tryLogIn() {
       try {
         const response = await Http.request({
-          url: "http://192.168.1.16:8080/auth/l",
+          url: "https://api.trashtracer.lol/auth/l",
           method: "POST",
           headers: { "Content-Type": "application/json" },
           content: JSON.stringify({

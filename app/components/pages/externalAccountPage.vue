@@ -81,7 +81,7 @@ export default Vue.extend({
   methods: {
     async getUserData() {
       Http.request({
-        url: `http://192.168.1.16:8080/u/${this.userid}`,
+        url: `https://api.trashtracer.lol/u/${this.userid}`,
         method: 'GET',
         headers: {
           auth: AppSettings.getString('token')
@@ -106,7 +106,7 @@ export default Vue.extend({
       this.loading = true;
       this.error = false;
       Http.request({
-        url: `http://192.168.1.16:8080/u/f?target=${this.userid}`,
+        url: `https://api.trashtracer.lol/u/f?target=${this.userid}`,
         method: 'POST',
         headers: {
           auth: AppSettings.getString('token')

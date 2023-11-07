@@ -47,7 +47,7 @@ export default Vue.extend({
     },
     async getGraphData() {
       Http.request({
-        "url": "http://192.168.1.16:8080/g",
+        "url": "https://api.trashtracer.lol/g",
         method: "GET",
         headers: {
           auth: AppSettings.getString("token")

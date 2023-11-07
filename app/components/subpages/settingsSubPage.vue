@@ -1,5 +1,5 @@
 <template>
-    <page actionBarHidden="true" :class="{'dark': darkModeToggle}">
+    <page actionBarHidden="true" :class="{ 'dark': darkModeToggle }">
         <StackLayout>
             <FlexboxLayout class="actionBar">
                 <FlexboxLayout @tap="goBack()" class="goBackIcon">
@@ -29,6 +29,7 @@ import Vue from 'vue';
 import * as AppSettings from '@nativescript/core/application-settings';
 import accountSetting from './settings/accountSetting.vue';
 import loaderPage from '../auth/loader.vue';
+import { android } from "@nativescript/core/application";
 export default Vue.extend({
     data() {
         return {
@@ -52,7 +53,7 @@ export default Vue.extend({
             this.darkModeToggle = !this.darkModeToggle
         },
         logOut() {
-            console.log('logout');
+            AppSettings.setString('userdata', '');
             AppSettings.setString('token', '');
             this.$navigateTo(loaderPage, {
                 clearHistory: true

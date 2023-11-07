@@ -44,7 +44,7 @@ export default Vue.extend({
     async tryRegister() {
       try {
         const response = await Http.request({
-          url: 'http://192.168.1.16:8080/auth/r',
+          url: 'https://api.trashtracer.lol/auth/r',
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           content: JSON.stringify({

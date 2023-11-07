@@ -77,18 +77,20 @@ export default Vue.extend({
     },
     async getLeaderboardData() {
       Http.request({
-        url: "http://192.168.1.16:8080/lb",
+        url: "https://api.trashtracer.lol/lb",
         method: "GET",
         headers: {
           auth: AppSettings.getString("token"),
           type: this.lbType
         }
       }).then((res: HttpResponse) => {
-        this.lbData = JSON.parse(res.content);
-        if (this.lbType === 'friends') {
-          this.filteredLbData = this.lbData.filter(player => player.friend === "TRUE" || player.user.id === this.localUserData.id);
-        } else {
-          this.filteredLbData = this.lbData;
+        if (res.statusCode === 200) {
+          this.lbData = JSON.parse(res.content);
+          if (this.lbType === 'friends') {
+            this.filteredLbData = this.lbData.filter(player => player.friend === "TRUE" || player.user.id === this.localUserData.id);
+          } else {
+            this.filteredLbData = this.lbData;
+          }
         }
       })
     },

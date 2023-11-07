@@ -61,7 +61,7 @@ export default Vue.extend({
             try {
                 console.log("test");
                 const response = await Http.request({
-                    url: "http://192.168.1.16:8080/s",
+                    url: "https://api.trashtracer.lol/s",
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -85,7 +85,7 @@ export default Vue.extend({
             try {
                 console.log("test")
                 const response = await Http.request({
-                    url: "http://192.168.1.16:8080/s",
+                    url: "https://api.trashtracer.lol/s",
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
